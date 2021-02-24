@@ -1,0 +1,43 @@
+body {
+    font-family: Verdana, Geneva, Arial, sans-serif;
+}
+
+.input_data_form {
+    text-align: center;
+    font-size: medium;
+    margin: 5% 10%;
+}
+
+label {
+    display: block;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.table-sortable-row:nth-child(even) {
+    background-color: #e5e5e5;
+}
+
+.table-sortable-header {
+    text-align: left;
+}
+
+.table-sortable-cell {
+    padding: 8px;
+}
+
+.table-sortable-cell.model-name-cell {
+    text-align: left;
+}
+
+.table-sortable-cell.count-cell, .table-sortable-cell.price-cell  {
+    text-align: right;
+}
+
+.table-sortable-cell.date-cell {
+    text-align: center;
+}
+
+.get-new-data {
+    text-align: center;
+}

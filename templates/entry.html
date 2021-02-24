@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block body %}
+
+    {#    <h2>{{ the_title }}</h2>#}
+
+    <header>
+        <h1>Рогозенко Дмитрий, 12 группа, 3 курс, 2020 год.</h1>
+    </header>
+
+    <form class="input_data_form" method='POST' action='/'>
+        <div class="container">
+            <h2>Заполнение шаблона</h2>
+            <p>Используйте эту форму для заполнения формы:</p>
+
+            <label for="county_name">Название округа</label>
+            <input type="text" name="county_name" placeholder="Введите название округа" id="county_name" required>
+
+            <label for="full_name">ФИО</label>
+            <input type="text" name="full_name" placeholder="Введите ФИО" id="full_name" required>
+
+            <label for="count_cars">Количество единиц</label>
+            <input type="text" name="count_cars" placeholder="Введите число" id="count_cars" required>
+        </div>
+
+        <button type="submit">Получить файл</button>
+    </form>
+
+    <form class="get-new-data" method="POST" action="/random-data">
+        <label for="count_records"></label>
+        <input type="text" name="count_records" placeholder="Введите количество записей" id="count_records" required>
+
+        <button class="button-new-data" type="submit">Сгенерировать новые данные</button>
+    </form>
+
+
+    <table class="sortable-theme-dark" data-sortable>
+        <thead>
+        <tr class="table-sortable-header">
+            {% for header in headings %}
+                <th>{{ header }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+                <tr class="table-sortable-row">
+{#                    {% for cell in row %}#}
+{#                        <td class="table-sortable-cell">{{ cell }}</td>#}
+{#                    {% endfor %}#}
+                    <td class="table-sortable-cell model-name-cell">{{ row[0] }}</td>
+                    <td class="table-sortable-cell date-cell">{{ row[1] }}</td>
+                    <td class="table-sortable-cell count-cell">{{ row[2] }}</td>
+                    <td class="table-sortable-cell price-cell">{{ row[3] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
