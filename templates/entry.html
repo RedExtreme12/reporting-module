@@ -1,52 +1,88 @@
 {% extends 'base.html' %}
 {% block body %}
 
-    {#    <h2>{{ the_title }}</h2>#}
-
     <header>
         <h1>Рогозенко Дмитрий, 12 группа, 3 курс, 2020 год.</h1>
     </header>
 
     <form class="input_data_form" method='POST' action='/'>
-        <div class="container">
-            <h2>Заполнение шаблона</h2>
-            <p>Используйте эту форму для заполнения формы:</p>
+        <h2>Заполнение шаблона</h2>
+        <p>Используйте эту форму для заполнения формы:</p>
+    </form>
 
-            <label for="county_name">Название округа</label>
-            <input type="text" name="county_name" placeholder="Введите название округа" id="county_name" required>
-
-            <label for="full_name">ФИО</label>
-            <input type="text" name="full_name" placeholder="Введите ФИО" id="full_name" required>
-
-            <label for="count_cars">Количество единиц</label>
-            <input type="text" name="count_cars" placeholder="Введите число" id="count_cars" required>
+    <form class="download_file_form" action="{{ url_for('download') }}" method="POST" enctype="multipart/form-data">
+        <div class="form-row justify-content-md-center">
+            <div class="form-group col-md-6">
+                <label for="county_name">Название округа</label>
+                <input type="text" class="form-control" name="county_name" placeholder="Введите название округа"
+                       id="county_name" required>
+            </div>
         </div>
 
-        <button type="submit">Получить файл</button>
+        <div class="form-row justify-content-md-center">
+            <div class="form-group col-md-6">
+                <label for="full_name">ФИО</label>
+                <input type="text" class="form-control" name="full_name" placeholder="Введите ФИО" id="full_name"
+                       required>
+            </div>
+        </div>
+
+        <div class="form-row justify-content-md-center">
+            <div class="form-group col-md-6">
+                <label for="count_cars">Поставщик</label>
+                <input type="text" class="form-control" name="count_cars" placeholder="Введите название" id="count_cars"
+                       required>
+            </div>
+        </div>
+
+        <div class="form-row justify-content-md-center">
+            <div class="form-group col-md-6">
+                <button class="get_file btn btn-primary btn-sm" type="submit">Создать документ</button>
+            </div>
+        </div>
+    </form>
+
+    <form class="file_form" action="{{ url_for('upload_file') }}" method="POST" enctype="multipart/form-data">
+            <div class="form-row justify-content-md-center">
+                <div class="form-group col-md-6">
+                    <div class="custom-file">
+                        <input type="file" name="file" class="custom-file-input" id="inputGroupFile01"
+                               accept=".docx, .dotx" multiple>
+                        <label class="custom-file-label" for="inputGroupFile01">Выбрать шаблон</label>
+                        <input type = "submit" class="btn btn-primary"/>
+                    </div>
+                </div>
+            </div>
+    </form>
+
+    <form class="change-interval-document" action="{{ url_for('change_interval') }}" method="POST" enctype="multipart/form-data">
+        <div class="form-row justify-content-md-center">
+                <div class="form-group col-md-6">
+                    <button class="change-interval-btn btn btn-primary btn-sm" type="submit">
+                        Увеличить межстрочный интервал</button>
+                </div>
+        </div>
     </form>
 
     <form class="get-new-data" method="POST" action="/random-data">
         <label for="count_records"></label>
-        <input type="text" name="count_records" placeholder="Введите количество записей" id="count_records" required>
-
+        <input type="text" name="count_records" placeholder="Введите количество записей" id="count_records">
         <button class="button-new-data" type="submit">Сгенерировать новые данные</button>
     </form>
 
 
-    <table class="sortable-theme-dark" data-sortable>
+    <table class="sortable-theme-dark" id="sortTable" data-sortable>
         <thead>
         <tr class="table-sortable-header">
-            {% for header in headings %}
-                <th>{{ header }}</th>
-            {% endfor %}
+            <th>{{ headings[0] }}</th>
+            <th>{{ headings[1] }}</th>
+            <th>{{ headings[2] }}</th>
+            <th>{{ headings[3] }}</th>
         </tr>
         </thead>
         <tbody>
             {% for row in data %}
                 <tr class="table-sortable-row">
-{#                    {% for cell in row %}#}
-{#                        <td class="table-sortable-cell">{{ cell }}</td>#}
-{#                    {% endfor %}#}
                     <td class="table-sortable-cell model-name-cell">{{ row[0] }}</td>
                     <td class="table-sortable-cell date-cell">{{ row[1] }}</td>
                     <td class="table-sortable-cell count-cell">{{ row[2] }}</td>
@@ -55,5 +91,4 @@
             {% endfor %}
         </tbody>
     </table>
-
 {% endblock %}

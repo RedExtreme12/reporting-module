@@ -2,14 +2,14 @@ body {
     font-family: Verdana, Geneva, Arial, sans-serif;
 }
 
-.input_data_form {
+.input_data_form, .file_form, .download_file_form, .change-interval-document {
+    width: 50%;
     text-align: center;
     font-size: medium;
-    margin: 5% 10%;
+    margin: auto;
 }
 
 label {
-    display: block;
     padding-top: 8px;
     padding-bottom: 8px;
 }
@@ -40,4 +40,8 @@ label {
 
 .get-new-data {
     text-align: center;
+}
+
+.custom-file {
+    width: 60px;
 }
