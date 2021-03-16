@@ -5,6 +5,8 @@ import random
 
 
 # Constants for the class TableData.
+from typing import Tuple
+
 CAR_COUNT_LIMIT = 1000
 CAR_PRICE_LOW_BOUND = 30000.00
 CAR_PRICE_HIGH_BOUND = 135000.70
@@ -13,7 +15,7 @@ CAR_PRICE_HIGH_BOUND = 135000.70
 class TableData:
     """Class for generating random data of table."""
 
-    def __init__(self, models_names: tuple, headings: tuple):
+    def __init__(self, models_names: Tuple[str], headings: Tuple[str]):
         self._models_names = models_names
         self._headings = headings
 
